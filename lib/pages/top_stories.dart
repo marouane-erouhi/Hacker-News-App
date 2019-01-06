@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+import '../components/default_app_bar.dart';
 import '../components/story_item.dart';
 import '../models/item.dart';
 
@@ -21,7 +21,6 @@ class _TopStories extends State{
     super.initState();
     _loadData();
     _scrollController.addListener(() {
-      //window.innerHeight + window.scrollY >= document.body.clientHeight
       if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
         print('scrolled down');
         _loadMoreData();
@@ -32,8 +31,11 @@ class _TopStories extends State{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Top Stories'),
+      drawer: Drawer(
+
+      ),
+      appBar: DefaultAppBar(
+        'Top Stories',
       ),
       body: Container(
         // onRefresh: loadData,
@@ -115,16 +117,4 @@ class _TopStories extends State{
     final Item newsItem = _newsItems[index];
     return StoryItem(item: newsItem);
   }
-
-  // _updateScrollInfo([_]) {
-  //   if (window.innerHeight + window.scrollY >= document.body.clientHeight) {
-  //     print("at bottom");
-  //   }
-  // }
-  // window.onScroll.listen(_updateScrollInfo);
-  
-
-  
-
-
 }
